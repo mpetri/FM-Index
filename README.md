@@ -17,13 +17,13 @@ Usage
 
 	make
 
-#### Building an Index
+### Building an Index
 
 	./fmbuild alice29.txt alice29.txt.fm
 	
 Builds and writes the FM-Index `alice29.txt.fm`.
 
-#### Running count() queries
+### Running count() queries
 
 	./fmcount -i alice29.txt.fm alice.qry
 
@@ -44,7 +44,7 @@ The index returns the **number of occurrences** for each query:
 	Alice : 395
 	and : 880
 	
-#### Running locate() queries
+### Running locate() queries
 
 	./fmlocate -i alice29.txt.fm alice.qry
 
@@ -57,7 +57,7 @@ The index returns a sorted list of the **locations of all occurences** for each 
 	poison (3) : 8151 8619 8731
 	tomorrow (1) : 63637
 
-#### Running extract() queries
+### Running extract() queries
 	
 	./fmextract -i alice29.txt.fm alice.extract
 	
@@ -74,13 +74,13 @@ The index returns the **extracted text snippet** for each query:
 	1213 - 1245 : 'TOOK A WATCH OUT OF ITS WAISTCOAT'
 	24 - 55 : 'ALICE'S ADVENTURES IN WONDERLAND'
 	
-#### Recover the original text from the index
+### Recover the original text from the index
 
 	./fmrecover -i alice29.txt.fm 
 	
 The index outputs the original text to `stdout`.
 
-#### Verbose output
+### Verbose output
 
 The `-v` command line parameter enables verbose messages:
 
@@ -104,15 +104,38 @@ The `-v` command line parameter enables verbose messages:
 	index Size = 114431 bytes (0.75 n)
 	writing FM Index to file 'alice29.txt.fm'
 
-Testing
--------
-
-TODO
- 
+	
 Benchmarks
 ----------
 
 ### Construction
+
+<table>
+  <tr>
+    <th>File</th><th>Description</th><th>Size [MB]</th><th>Time [sec]</th><th>Memory [MB]</th>
+  </tr>
+  <tr>
+    <th>wsj</th><th>English text</th><th>3</th><th>2.157</th><th>20.02</th>
+  </tr>
+  <tr>
+	<th>wsj</th><th>English text</th><th>6</th><th>4.487</th><th>39.73</th>
+  </tr>
+  <tr>
+	<th>wsj</th><th>English text</th><th>12</th><th>9.293</th><th>79.15</th>
+  </tr>
+  <tr>
+	<th>wsj</th><th>English text</th><th>25</th><th>19.028</th><th>158.0</th>
+  </tr>
+  <tr>
+	<th>wsj</th><th>English text</th><th>50</th><th>38.699</th><th>315.7</th>
+  </tr>
+  <tr>
+	<th>wsj</th><th>English text</th><th>100</th><th>78.287</th><th>631.2</th>
+  </tr>
+  <tr>
+	<th>wsj</th><th>English text</th><th>200</th><th>158.341</th><th>1233</th>
+  </tr>
+</table>
 
 
 ### Count
@@ -121,7 +144,7 @@ Benchmarks
 ### Locate
 
 
-### Display
+### Extract
 
 
 Libraries
