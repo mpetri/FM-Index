@@ -1,30 +1,43 @@
 FM-Index - Compressed full-text Index
------------------------------------------------------
+=====================================
 
-Introduction:
--------------
-
-A simple c++ FM-Index [1] implementation using RRR [4] wavelet trees [5]. 
-Allows to build a full-text index over a given text T supporting the
+A simple c++ FM-Index [1] implementation using RRR [4] wavelet trees [5]
+which allows to build a full-text index over a given text T supporting the
 following operations:
 
   * count(P)     : count the number of occurences of P in T.
   * locate(P)    : locate the text positions of all occurences of P in T.
   * display(A,B) : extract T[A,B] 
+  
+Usage
+-----
 
-Benchmark:
-------------------
+TODO
 
+Testing
+-------
 
-Libraries:
+TODO
+ 
+Benchmarks
 ----------
 
-- libcds: http://libcds.recoded.cl/
 
-- libdivsufsort: http://code.google.com/p/libdivsufsort/
+Libraries
+---------
 
+The following libraries are needed to use the index. Sourcecode for both
+libaries is included.
 
-References:
+ * [.libcds](http://libcds.recoded.cl/) -- succinct low level data structures
+ * [.libdivsufsort(http://code.google.com/p/libdivsufsort/) -- fast suffix sorting
+
+Licence
+--------
+
+GPL v3
+
+References
 -----------
 
  [1] Paolo Ferragina and Giovanni Manzini. Indexing compressed text. 
