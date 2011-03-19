@@ -7,7 +7,7 @@ following operations:
 
   * `count(P)`     : count the number of occurences of `P` in `T`.
   * `locate(P)`    : locate the text positions of all occurences of `P` in `T`.
-  * `display(A,B)` : extract `T[A,B]`.
+  * `extract(A,B)` : extract `T[A,B]`.
   * `recover()`    : recover `T` from the index.
   
 Usage
@@ -17,28 +17,15 @@ Usage
 
 	make
 
-### Command Parameters
-
-	./fm-index
-	USAGE: ./fm-index -i <index> -q <queries> -k <depth> -s <samplerate> -r -l -d <input>
-		-i index file
-		-d input file
-		-q query file
-		-s samplerate [default = 64]
-		-l locate occurrences
-		-r recover original text
-
-### Examples
-
 #### Building an Index
 
-	./fm-index -d alice29.txt
+	./fmbuild alice29.txt alice29.txt.fm
 	
 Builds and writes the FM-Index `alice29.txt.fm`.
 
 #### Running count() queries
 
-	./fm-index -i alice29.txt.fm -q alice.qry
+	./fmcount -i alice29.txt.fm alice.qry
 
 The queries are stored in a new line seperated file:
 
@@ -50,37 +37,73 @@ The queries are stored in a new line seperated file:
 	
 The index returns the **number of occurrences** for each query:
 
-	./fm-index -i alice29.txt.fm -q alices.qry
-	Read 5 queries
+	./fmcount -i alice29.txt.fm alice.qry
 	the : 2101
 	house : 20
 	keep : 11
 	Alice : 395
 	and : 880
-	Finished processing queries: 0.000 sec
 	
 #### Running locate() queries
 
-	./fm-index -i alice29.txt.fm -q alice.qry -l
+	./fmlocate -i alice29.txt.fm alice.qry
 
 	
 The index returns a sorted list of the **locations of all occurences** for each query:
 
-	./fm-index -i alice29.txt.fm -q alices.qry -l
+	./fmlocate -i alice29.txt.fm alice.qry
 	Read 3 queries
 	keep (11) : 46385 51125 69491 74680 81562 83046 104830 105180 133621 149966 151623
 	poison (3) : 8151 8619 8731
 	tomorrow (1) : 63637
-	Finished processing queries: 0.008 sec
+
+#### Running extract() queries
+	
+	./fmextract -i alice29.txt.fm alice.extract
+	
+The queries are stored in a new line seperated file:
+
+	118 147
+	1213 1245
+	24 55
+
+The index returns the **extracted text snippet** for each query:
+
+	./fmextract -i alice29.txt.fm alice.extract
+	118 - 147 : 'THE MILLENNIUM FULCRUM EDITION'
+	1213 - 1245 : 'TOOK A WATCH OUT OF ITS WAISTCOAT'
+	24 - 55 : 'ALICE'S ADVENTURES IN WONDERLAND'
 	
 #### Recover the original text from the index
 
-	./fm-index -i alice29.txt.fm -r
+	./fmrecover -i alice29.txt.fm 
 	
 The index outputs the original text to `stdout`.
 
-#### Running display() queries
-	
+#### Verbose output
+
+The `-v` command line parameter enables verbose messages:
+
+	./fmbuild -v alice29.txt
+	building index.
+	- remapping alphabet.
+	- creating cumulative counts C[].
+	- performing bwt.
+	- sample SA locations.
+	- creating bwt output.
+	- create RRR wavelet tree over bwt.
+	build FM-Index done. (0.101 sec)
+	space usage:
+	- remap_reverse: 75 bytes (0.07%)
+	- C: 1028 bytes (0.90%)
+	- Suffixes: 9508 bytes (8.31%)
+	- Positions: 9512 bytes (8.31%)
+	- Sampled: 7948 bytes (6.95%)
+	- T_bwt: 86088 bytes (75.23%)
+	input Size n = 152090 bytes
+	index Size = 114431 bytes (0.75 n)
+	writing FM Index to file 'alice29.txt.fm'
+
 Testing
 -------
 
