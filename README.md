@@ -108,32 +108,57 @@ The `-v` command line parameter enables verbose messages:
 Benchmarks
 ----------
 
+### Test data
+
+Test data was taken from the [The Pizza&Chili Site](http://pizzachili.di.unipi.it/) and TREC. 
+
+<table>
+  <tr>
+    <th>File</th><th>Description</th><th>Alphabet size</th><th>Entropy (bps)</th>
+  </tr>
+  <tr>
+    <th>wsj</th><th>English Text taken from the TREC wsj collection</th><th>90</th><th>4.60</th>
+  </tr>
+  <tr>
+	<th>src</th><th>Concatenated source code (.c,.h,.C,.java) of linux-2.6.11.6 and gcc-4.0.0</th><th>230</th><th>5.47</th>
+  </tr>
+  <tr>
+	<th>proteins</th><th>Sequence of newline-separated protein sequences</th><th>25</th><th>79.15</th>
+  </tr>
+  <tr>
+	<th>dna</th><th>Gene DNA sequences</th><th>4</th><th>1.97</th>
+  </tr>
+  <tr>
+	<th>xml</th><th>XML that provides bibliographic information on major computer science journals and proceedings (dblp)</th><th>50</th><th>96</th><th>5.26</th>
+  </tr>
+</table>
+
 ### Construction
 
 <table>
   <tr>
-    <th>File</th><th>Description</th><th>Size [MB]</th><th>Time [sec]</th><th>Memory [MB]</th>
+    <th>File</th><th>Size [MB]</th><th>Time [sec]</th><th>Memory [MB]</th>
   </tr>
   <tr>
-    <th>wsj</th><th>English text</th><th>3</th><th>2.157</th><th>20.02</th>
+    <th>wsj</th><th>3</th><th>2.157</th><th>20.02</th>
   </tr>
   <tr>
-	<th>wsj</th><th>English text</th><th>6</th><th>4.487</th><th>39.73</th>
+	<th>wsj</th><th>6</th><th>4.487</th><th>39.73</th>
   </tr>
   <tr>
-	<th>wsj</th><th>English text</th><th>12</th><th>9.293</th><th>79.15</th>
+	<th>wsj</th><th>12</th><th>9.293</th><th>79.15</th>
   </tr>
   <tr>
-	<th>wsj</th><th>English text</th><th>25</th><th>19.028</th><th>158.0</th>
+	<th>wsj</th><th>25</th><th>19.028</th><th>158.0</th>
   </tr>
   <tr>
-	<th>wsj</th><th>English text</th><th>50</th><th>38.699</th><th>315.7</th>
+	<th>wsj</th><th>50</th><th>38.699</th><th>315.7</th>
   </tr>
   <tr>
-	<th>wsj</th><th>English text</th><th>100</th><th>78.287</th><th>631.2</th>
+	<th>wsj</th><th>100</th><th>78.287</th><th>631.2</th>
   </tr>
   <tr>
-	<th>wsj</th><th>English text</th><th>200</th><th>158.341</th><th>1233</th>
+	<th>wsj</th><th>200</th><th>158.341</th><th>1233</th>
   </tr>
 </table>
 
