@@ -114,22 +114,22 @@ Test data was taken from the [The Pizza&Chili Site](http://pizzachili.di.unipi.i
 
 <table>
   <tr>
-    <th>File</th><th>Description</th><th>Alphabet size</th><th>Entropy (bps)</th>
+    <th>File</th><th align=left>Description</th><th>Alphabet size</th><th>Entropy (bps)</th>
   </tr>
   <tr>
-    <th>wsj</th><th>English Text taken from the TREC wsj collection</th><th>90</th><th>4.60</th>
+    <td>wsj</td><td align=left >English Text taken from the TREC wsj collection</td><td>90</td><td>4.60</td>
   </tr>
   <tr>
-	<th>src</th><th>Concatenated source code (.c,.h,.C,.java) of linux-2.6.11.6 and gcc-4.0.0</th><th>230</th><th>5.47</th>
+	<td>src</td><td align=left>Concatenated source code (.c,.h,.C,.java) of linux-2.6.11.6 and gcc-4.0.0</td><td>230</td><td>5.47</td>
   </tr>
   <tr>
-	<th>proteins</th><th>Sequence of newline-separated protein sequences</th><th>25</th><th>79.15</th>
+	<td>proteins</td><td align=left>Sequence of newline-separated protein sequences</td><td>25</td><td>79.15</td>
   </tr>
   <tr>
-	<th>dna</th><th>Gene DNA sequences</th><th>4</th><th>1.97</th>
+	<td>dna</td><td align=left>Gene DNA sequences</td><td>4</td><td>1.97</td>
   </tr>
   <tr>
-	<th>xml</th><th>XML that provides bibliographic information on major computer science journals and proceedings (dblp)</th><th>50</th><th>96</th><th>5.26</th>
+	<td>xml</td><td align=left>XML that provides bibliographic information on major computer science journals and proceedings (dblp)</td><td>96</td><td>5.26</td>
   </tr>
 </table>
 
