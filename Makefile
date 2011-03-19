@@ -6,7 +6,7 @@ CFLAGS=-W -Wall -O3
 INCCDS=./libcds/includes/
 INCDIVSUF=./libdivsufsort/include/
 
-all: index
+all: ./libcds/lib/libcds.a libdivsufsort/lib/libdivsufsort.a index
 
 ./libcds/lib/libcds.a: 
 	$(MAKE) -C libcds
