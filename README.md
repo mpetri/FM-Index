@@ -7,7 +7,8 @@ following operations:
 
   * `count(P)`     : count the number of occurences of `P` in `T`.
   * `locate(P)`    : locate the text positions of all occurences of `P` in `T`.
-  * `display(A,B)` : extract `T[A,B]` 
+  * `display(A,B)` : extract `T[A,B]`.
+  * `recover()`      : recover `T` from the index.
   
 Usage
 -----
@@ -47,7 +48,7 @@ The queries are stored in a new line seperated file:
 	Alice
 	and
 	
-The index returns the following results:
+The index returns the **number of occurrences** for each query:
 
 	./fm-index -i alice29.txt.fm -q alices.qry
 	Read 5 queries
@@ -59,6 +60,26 @@ The index returns the following results:
 	Finished processing queries: 0.000 sec
 	
 #### Running locate() queries
+
+	./fm-index -i alice29.txt.fm -q alice.qry -l
+
+	
+The index returns a sorted list of the **locations of all occurences** for each query:
+
+	./fm-index -i alice29.txt.fm -q alices.qry -l
+	Read 3 queries
+	keep (11) : 46385 51125 69491 74680 81562 83046 104830 105180 133621 149966 151623
+	poison (3) : 8151 8619 8731
+	tomorrow (1) : 63637
+	Finished processing queries: 0.008 sec
+	
+#### Recover the original text from the index
+
+	./fm-index -i alice29.txt.fm -r
+	
+The index outputs the original text to `stdout`.
+
+#### Running display() queries
 	
 Testing
 -------
@@ -103,7 +124,4 @@ References
  4. R. Raman, V. Raman, and S. Srinivasa Rao. Succinct indexable dictionaries with applications to encoding k-ary trees and multisets. In SODA'02, 233-242.
  5. R. Grossi, A. Gupta, and J. Vitter. High-order entropy-compressed text indexes. In SODA'03, 841-850.
  
- Author
- ------
  
- Matthias Petri -- Matthias.Petri@gmail.com
