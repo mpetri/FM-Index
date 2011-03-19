@@ -8,7 +8,7 @@ following operations:
   * `count(P)`     : count the number of occurences of `P` in `T`.
   * `locate(P)`    : locate the text positions of all occurences of `P` in `T`.
   * `display(A,B)` : extract `T[A,B]`.
-  * `recover()`      : recover `T` from the index.
+  * `recover()`    : recover `T` from the index.
   
 Usage
 -----
@@ -113,15 +113,24 @@ libaries is included.
 Licence
 --------
 
-GPL v3
+GPL v3 (see LICENCE file)
 
 References
 -----------
 
- 1. Paolo Ferragina and Giovanni Manzini. Indexing compressed text. Journal of the ACM, 52(4):552-581, 2005.
- 2. Francisco Claude and Gonzalo Navarro. Practical Rank/Select Queries over Arbitrary Sequences. Proc. SPIRE'08 176-187, 2008.
- 3. Veli M"akinen and Gonzalo Navarro. Implicit Compression Boosting with Applications to Self-Indexing. Proc. SPIRE'07 214-226.
- 4. R. Raman, V. Raman, and S. Srinivasa Rao. Succinct indexable dictionaries with applications to encoding k-ary trees and multisets. In SODA'02, 233-242.
- 5. R. Grossi, A. Gupta, and J. Vitter. High-order entropy-compressed text indexes. In SODA'03, 841-850.
- 
- 
+ 1. Paolo Ferragina and Giovanni Manzini. Indexing compressed text. 
+    Journal of the ACM, 52(4):552-581, 2005.
+ 2. Francisco Claude and Gonzalo Navarro. Practical Rank/Select Queries over Arbitrary Sequences. 
+    SPIRE'08 176-187, 2008.
+ 3. Veli M"akinen and Gonzalo Navarro. Implicit Compression Boosting with Applications to Self-Indexing. 
+    SPIRE'07 214-226.
+ 4. R. Raman, V. Raman, and S. Srinivasa Rao. Succinct indexable dictionaries with applications to encoding k-ary trees and multisets. 
+    SODA'02, 233-242.
+ 5. R. Grossi, A. Gupta, and J. Vitter. High-order entropy-compressed text indexes. 
+    SODA'03, 841-850.
+ 6. [The Pizza&Chili Site](http://pizzachili.di.unipi.it/).
+
+Author
+------
+
+Matthias Petri <Matthias.Petri@gmail.com>

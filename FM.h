@@ -17,6 +17,8 @@
 #ifndef FM_H
 #define	FM_H
 
+#include <stdarg.h>
+
 #include "util.h"
 
 /* libcds includes */
@@ -34,6 +36,7 @@ using namespace cds_utils;
 using namespace cds_static;
 
 #define DEFAULT_SAMPLERATE      64
+#define RRR_SAMPLERATE			20
 
 class FM {
 public:
@@ -45,10 +48,21 @@ public:
     uint32_t count(uint8_t* pattern,uint32_t m);
     uint32_t* locate(uint8_t* pattern,uint32_t m,uint32_t* matches);
     uint32_t getSize();
-    uint8_t* display(uint32_t start,uint32_t stop);
+    uint8_t* extract(uint32_t start,uint32_t stop);
     uint8_t* reconstructText(uint32_t* n);
     float getSizeN();
     virtual ~FM();
+public:
+	static void info(const char *format,...)
+	{
+		if(FM::verbose == 1) {
+			va_list vargs;
+			va_start (vargs, format);
+			vfprintf (stderr, format, vargs);
+			fprintf (stderr, "\n");
+		}
+	}
+	static int verbose;
 private:
     FM();
 private:
@@ -60,11 +74,13 @@ private:
   uint8_t remap[size_uchar];
   uint8_t* remap_reverse;
   uint32_t* suffixes;
+  uint32_t* positions;
   BitSequence* sampled;
   WaveletTreeNoptrs *T_bwt;
   Sequence *N;
   Sequence *M;
 };
+
 
 #endif	/* FM_H */
 
