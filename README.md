@@ -250,52 +250,52 @@ Construction time increases linearly `O(n)` with size `n` of `T`. Memory require
     <th>File</th><th>Size [MB]</th><th>Index Size [MB]</th><th>Index Size [relative to file size]</th>
   </tr>
   <tr>
-    <td>wsj</td><td>25</td><td>15</td>td>0.6</td>
+    <td>wsj</td><td>25</td><td>15</td><td>0.6</td>
   </tr>
   <tr>
-	<td>wsj</td><td>50</td><td>29</td>td>0.58</td>
+	<td>wsj</td><td>50</td><td>29</td><td>0.58</td>
   </tr>
   <tr>
-	<td>wsj</td><td>100</td><td>57</td>td>0.57</td>
+	<td>wsj</td><td>100</td><td>57</td><td>0.57</td>
   </tr>
   <tr>
-	<td>wsj</td><td>200</td><td>112</td>td>0.56</td>
+	<td>wsj</td><td>200</td><td>112</td><td>0.56</td>
   </tr>
   <tr>
-	<td>src</td><td>50</td><td>30</td>td>0.77</td>
+	<td>src</td><td>50</td><td>30</td><td>0.77</td>
   </tr>
   <tr>
-	<td>src</td><td>100</td><td>59</td>td>0.77</td>
+	<td>src</td><td>100</td><td>59</td><td>0.77</td>
   </tr>
   <tr>
-	<td>src</td><td>200</td><td>117</td>td>0.75</td>
+	<td>src</td><td>200</td><td>117</td><td>0.75</td>
   </tr>
   <tr>
-	<td>proteins</td><td>50</td><td>36</td>td>0.72</td>
+	<td>proteins</td><td>50</td><td>36</td><td>0.72</td>
   </tr>
   <tr>
-	<td>proteins</td><td>100</td><td>71</td>td>0.71</td>
+	<td>proteins</td><td>100</td><td>71</td><td>0.71</td>
   </tr>
   <tr>
-	<td>proteins</td><td>200</td><td>137</td>td>0.685</td>
+	<td>proteins</td><td>200</td><td>137</td><td>0.685</td>
   </tr>
   <tr>
-	<td>dna</td><td>50</td><td>24</td>td>0.48</td>
+	<td>dna</td><td>50</td><td>24</td><td>0.48</td>
   </tr>
   <tr>
-	<td>dna</td><td>100</td><td>48</td>td>0.48</td>
+	<td>dna</td><td>100</td><td>48</td><td>0.48</td>
   </tr>
   <tr>
-	<td>dna</td><td>200</td><td>95</td>td>0.475</td>
+	<td>dna</td><td>200</td><td>95</td><td>0.475</td>
   </tr>
   <tr>
-	<td>xml</td><td>50</td><td>25</td>td>0.50</td>
+	<td>xml</td><td>50</td><td>25</td><td>0.50</td>
   </tr>
   <tr>
-	<td>xml</td><td>100</td><td>50</td>td>0.50</td>
+	<td>xml</td><td>100</td><td>50</td><td>0.50</td>
   </tr>
   <tr>
-	<td>xml</td><td>200</td><td>99</td>td>0.495</td>	
+	<td>xml</td><td>200</td><td>99</td><td>0.495</td>	
   </tr>  
 </table>
 
