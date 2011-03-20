@@ -2,13 +2,19 @@ FM-Index - Compressed full-text Index
 =====================================
 
 A simple c++ FM-Index [1] implementation using RRR [4] wavelet trees [5]
-which allows to build a full-text index over a given text `T` supporting the
-following operations:
+which allows to build a full-text index over a given text `T` of size `n`
+supporting the following operations:
 
-  * `count(P)`     : count the number of occurences of `P` in `T`.
-  * `locate(P)`    : locate the text positions of all occurences of `P` in `T`.
-  * `extract(A,B)` : extract `T[A,B]`.
+  * `count(P,m)`     : count the number of occurences of pattern `P`  of size `m` in `T`.
+  * `locate(P,m)`    : locate the text positions of all occurences of `P` of size `m` in `T`.
+  * `extract(A,B)` : extract `T[A,B]` from the index.
   * `recover()`    : recover `T` from the index.
+  
+The constructed index uses `nH_k + o(n log sigma)` bits of space [3] which is roughly the size of
+the **compressed** representation of `T` and can perform the above operations without the need
+to store `T`. An empirical evaluation of the index is sown in the Benchmark section below.
+
+Drawbacks of the FM-Index is long construction time and high memory requirements during construction.
   
 Usage
 -----
@@ -103,8 +109,45 @@ The `-v` command line parameter enables verbose messages:
 	input Size n = 152090 bytes
 	index Size = 114431 bytes (0.75 n)
 	writing FM Index to file 'alice29.txt.fm'
-
 	
+	
+Using the FM-Index to provide full-text search on a given text `T`
+------------------------------------------------------------------
+
+A small code example illustrating the use of the FM class:
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <stdint.h>
+	#include "FM.h"
+
+	int
+	main(int argc,char** argv) {
+		uint8_t* T = /* read text */
+		uint32_t n = /* sizeof T */
+		FM* = new FM(T,n);
+		if(FM) {
+			/* count the occurences of 'house' in T */
+			uint32_t cnt = FM->count("house",strlen("house"));
+			
+			/* get all locations offsets of 'house' in T */
+			uint32_t matches; /* number of matches */
+			uint32_t* locs; /* list of location offsets */
+			locs = FM->locate("house",strlen("house"),&matches);
+			
+			/* extract text snippet from T */
+			uint8_t* snippet = FM->extract(5,251);
+			
+			/* recover T from index */
+			uint32_t nnew; /* size of Tnew */
+			uint8_t* Tnew = FM->reconstructText(&nnew);
+			
+			delete FM;
+		}
+	}
+	
+Compile with `g++ -o test main.cpp FM.cpp util.c libcds.a libdivsufsort.a`
+
 Benchmarks
 ----------
 
@@ -129,39 +172,105 @@ Test data was taken from the [The Pizza&Chili Site](http://pizzachili.di.unipi.i
 	<td>dna</td><td align=left>Gene DNA sequences</td><td>4</td><td>1.97</td>
   </tr>
   <tr>
-	<td>xml</td><td align=left>XML that provides bibliographic information on major computer science journals and proceedings (dblp)</td><td>96</td><td>5.26</td>
+	<td>xml</td><td align=left>XML that provides bibliographic info on compsci pubs(dblp)</td><td>96</td><td>5.26</td>
   </tr>
 </table>
 
 ### Construction
+
+Peak memory usage was measured using the `valgrind --tool=massif` tool. Running time was measured using the `gettimeofday()` system call.
 
 <table>
   <tr>
     <th>File</th><th>Size [MB]</th><th>Time [sec]</th><th>Memory [MB]</th>
   </tr>
   <tr>
-    <th>wsj</th><th>3</th><th>2.157</th><th>20.02</th>
+    <td>wsj</td><td>3</td><td>2.157</td><td>20.02</td>
   </tr>
   <tr>
-	<th>wsj</th><th>6</th><th>4.487</th><th>39.73</th>
+	<td>wsj</td><td>6</td><td>4.487</td><td>39.73</td>
   </tr>
   <tr>
-	<th>wsj</th><th>12</th><th>9.293</th><th>79.15</th>
+	<td>wsj</td><td>12</td><td>9.293</td><td>79.15</td>
   </tr>
   <tr>
-	<th>wsj</th><th>25</th><th>19.028</th><th>158.0</th>
+	<td>wsj</td><td>25</td><td>19.028</td><td>158.0</td>
   </tr>
   <tr>
-	<th>wsj</th><th>50</th><th>38.699</th><th>315.7</th>
+	<td>wsj</td><td>50</td><td>38.699</td><td>315.7</td>
   </tr>
   <tr>
-	<th>wsj</th><th>100</th><th>78.287</th><th>631.2</th>
+	<td>wsj</td><td>100</td><td>78.287</td><td>631.2</td>
   </tr>
   <tr>
-	<th>wsj</th><th>200</th><th>158.341</th><th>1233</th>
+	<td>wsj</td><td>200</td><td>158.341</td><td>1233</td>
   </tr>
+  <tr>
+	<td>src</td><td>50</td><td>39.909</td><td>315.7</td>
+  </tr>
+  <tr>
+	<td>src</td><td>100</td><td>80.489</td><td>631.2</td>
+  </tr>
+  <tr>
+	<td>src</td><td>200</td><td>163.072</td><td>1233</td>
+  </tr>
+  <tr>
+	<td>proteins</td><td>50</td><td>35.374</td><td>315.7</td>
+  </tr>
+  <tr>
+	<td>proteins</td><td>100</td><td>72.824</td><td>631.2</td>
+  </tr>
+  <tr>
+	<td>proteins</td><td>200</td><td>146.173</td><td>1233</td>
+  </tr>
+  <tr>
+	<td>dna</td><td>50</td><td>25.941</td><td>315.7</td>
+  </tr>
+  <tr>
+	<td>dna</td><td>100</td><td>53.287</td><td>631.2</td>
+  </tr>
+  <tr>
+	<td>dna</td><td>200</td><td>109.449</td><td>1233</td>
+  </tr>  
+  <tr>
+	<td>xml</td><td>50</td><td>36.601</td><td>315.7</td>
+  </tr>
+  <tr>
+	<td>xml</td><td>100</td><td>74.104</td><td>631.2</td>
+  </tr>
+  <tr>
+	<td>xml</td><td>200</td><td>150.050</td><td>1233</td>
+  </tr>  
 </table>
 
+Construction time increases linearly `O(n)` with size `n` of `T`. Memory requirement is roughly `6n` independent of the file type.
+
+<table>
+  <tr>
+    <th>File</th><th>Size [MB]</th><th>Index Size [MB]</th><th>Index Size [relative to file size]</th>
+  </tr>
+  <tr>
+    <td>wsj</td><td>25</td><td>15</td>td>0.6</td>
+	<td>wsj</td><td>50</td><td>29</td>td>0.58</td>
+	<td>wsj</td><td>100</td><td>57</td>td>0.57</td>
+	<td>wsj</td><td>200</td><td>112</td>td>0.56</td>
+	<td>src</td><td>50</td><td>30</td>td>0.77</td>
+	<td>src</td><td>100</td><td>59</td>td>0.77</td>
+	<td>src</td><td>200</td><td>117</td>td>0.75</td>
+	<td>proteins</td><td>50</td><td>36</td>td>0.72</td>
+	<td>proteins</td><td>100</td><td>71</td>td>0.71</td>
+	<td>proteins</td><td>200</td><td>137</td>td>0.685</td>
+	<td>dna</td><td>50</td><td>24</td>td>0.48</td>
+	<td>dna</td><td>100</td><td>48</td>td>0.48</td>
+	<td>dna</td><td>200</td><td>95</td>td>0.475</td>	
+	<td>xml</td><td>50</td><td>25</td>td>0.50</td>
+	<td>xml</td><td>100</td><td>50</td>td>0.50</td>
+	<td>xml</td><td>200</td><td>99</td>td>0.495</td>	
+  </tr>  
+</table>
+
+Index size depends on the compressability of `T`. For each specific file type, as `n` increases, 
+the size of the auxillary data becomes less significant which leads to better overall compression ratio.
 
 ### Count
 
