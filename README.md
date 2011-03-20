@@ -1,7 +1,7 @@
 FM-Index - Compressed full-text Index
 =====================================
 
-A simple c++ FM-Index [1] implementation using RRR [4] wavelet trees [5]
+A simple C++ based FM-Index [1] implementation using RRR [4] wavelet trees [5]
 which allows to build a full-text index over a given text `T` of size `n`
 supporting the following operations:
 
@@ -150,6 +150,9 @@ Compile with `g++ -o test main.cpp FM.cpp util.c libcds.a libdivsufsort.a`
 
 Benchmarks
 ----------
+
+Experiments are similar to the ones described in [1]. All experiments were run on a `Intel(R) Core(TM)2 Duo CPU E8500 @ 3.16GHz` using 4GB of RAM. 
+The default samplerate `s=64` was used in all experiments.
 
 ### Test data
 
@@ -304,11 +307,17 @@ the size of the auxillary data becomes less significant which leads to better ov
 
 ### Count
 
+50000 random patterns for each length `m=5 to 50` were extracted from each file. 
+
+![FM-Index count() - 200MB - 50000 Queries](https://github.com/mpetri/FM-Index/raw/master/benchmark/FM_count_200MB_Q50000.png)
 
 ### Locate
 
 
 ### Extract
+
+
+### Recover
 
 
 Libraries
@@ -318,7 +327,7 @@ The following libraries are needed to use the index. Sourcecode for both
 libaries is included.
 
  * [libcds](http://libcds.recoded.cl/) -- succinct low level data structures
- * [libdivsufsort](http://code.google.com/p/libdivsufsort/) -- fast suffix sorting
+ * [libdivsufsort](http://code.google.com/p/libdivsufsort/) -- fast suffix sorting (requires cmake to build)
 
 Licence
 --------
@@ -343,4 +352,4 @@ References
 Author
 ------
 
-Matthias Petri <Matthias.Petri@gmail.com> see (http://github/com/mpetri/FM-Index).
+Matthias Petri <Matthias.Petri@gmail.com> see [github](http://github/com/mpetri/FM-Index).
