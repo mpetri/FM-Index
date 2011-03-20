@@ -5,8 +5,8 @@ A simple C++ based FM-Index [1] implementation using RRR [4] wavelet trees [5]
 which allows to build a full-text index over a given text `T` of size `n`
 supporting the following operations:
 
-  * `count(P,m)`     : count the number of occurences of pattern `P`  of size `m` in `T`.
-  * `locate(P,m)`    : locate the text positions of all occurences of `P` of size `m` in `T`.
+  * `count(P,m)`   : count the number of occurences of pattern `P`  of size `m` in `T`.
+  * `locate(P,m)`  : locate the text positions of all occurences of `P` of size `m` in `T`.
   * `extract(A,B)` : extract `T[A,B]` from the index.
   * `recover()`    : recover `T` from the index.
   
