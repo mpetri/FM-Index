@@ -82,6 +82,7 @@ int main(int argc, char** argv) {
 	FM::info("time: %.3f sec",((float)(stop-start))/1000000);
 	
 	/* clean up */
+	free(result);
 	delete FMIdx;
 	/* T already deleted in FMIdx */
     
