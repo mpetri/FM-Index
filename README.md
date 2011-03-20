@@ -307,9 +307,41 @@ the size of the auxillary data becomes less significant which leads to better ov
 
 ### Count
 
-50000 random patterns for each length `m=5 to 50` were extracted from each file. 
+50000 random patterns for each length `m=5 to 50` were extracted from each 200MB file. 
 
 ![FM-Index count() - 200MB - 50000 Queries](https://github.com/mpetri/FM-Index/raw/master/benchmark/FM_count_200MB_Q50000.png)
+
+The graph shows the time in seconds it took the FM-Index to answer all 50000 queries on different file types. Note that the query
+time grows linearly `O(m)` with the pattern length. Files with smaller alphabet show faster query times overall.
+
+Also note that the query time (`m=20`) does **not** depend on the size `n` of the text `T`:
+
+<table>
+  <tr>
+    <th>File</th><th>Size [MB]</th><th>Query Time [sec]</th>
+  </tr>
+  <tr>
+    <td>wsj</td><td>3</td><td>13.37</td>
+  </tr>
+  <tr>
+    <td>wsj</td><td>6</td><td>11.96</td>
+  </tr>
+  <tr>
+    <td>wsj</td><td>12</td><td>12.74</td>
+  </tr>
+  <tr>
+    <td>wsj</td><td>25</td><td>12.74</td>
+  </tr>
+  <tr>
+    <td>wsj</td><td>50</td><td>12.07</td>
+  </tr>
+  <tr>
+    <td>wsj</td><td>100</td><td>14.59</td>
+  </tr>
+  <tr>
+    <td>wsj</td><td>200</td><td>14.34/td>
+  </tr>
+  <tr>
 
 ### Locate
 
