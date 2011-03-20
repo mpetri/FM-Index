@@ -339,12 +339,30 @@ Also note that the query time (`m=20`) does **not** depend on the size `n` of th
     <td>wsj</td><td>100</td><td>14.59</td>
   </tr>
   <tr>
-    <td>wsj</td><td>200</td><td>14.34/td>
+    <td>wsj</td><td>200</td><td>14.34</td>
   </tr>
 </table>
 
+Overall, searching for 50000 patterns in `T` using a FM-Index is fast but requieres considerable amount of upfront work (time+space).
+
 ### Locate
 
+`k` queries pf length `5` are randomly selected from `T` so they roughly amount to a certain number of total occurences over all queries.
+
+![FM-Index locate() - 200MB - Query length 5](https://github.com/mpetri/FM-Index/raw/master/benchmark/FM_locate_200MB_QL5.png)
+
+Note the running time increases linearly with the number of occurrences. Similar to `count()`, files with small alphabet size perform 
+better most likely due to decreased height of the wavelet tree. Comparing the running times of both `count()` and `locate()` we observe
+that `locate()` is significantly slower than `count()` as patterns (especially short ones), on large text collections, tend to have many occurrences.
+
+The samplerate `s` (default = 64) determines how often the underlying suffix array is sampled to enable faster `locate()` calls. For different samplerates
+the index achieves different time and space trade-offs during the `locate()` operation:
+
+![FM-Index locate() - 50MB - Query length 6 - 50000 occurrences - variable samplerate](https://github.com/mpetri/FM-Index/raw/master/benchmark/FM_locate_samplerate_50MB_QL6.png)
+
+Smaller samplerate decrease the `locate()` running time but the space used by the index increases. For `s=8` the index is 1.5 times the sizes of the original text. 
+For `s-512`, that is only every 512th position in the underlying suffix array is sampled, the index is less than 50% of the original text. The above graph shows that the
+best time-space trade-off is achieved for samplerates between 64 and 128.
 
 ### Extract
 
