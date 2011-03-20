@@ -341,7 +341,7 @@ Also note that the query time (`m=20`) does **not** depend on the size `n` of th
   <tr>
     <td>wsj</td><td>200</td><td>14.34/td>
   </tr>
-  <tr>
+</table>
 
 ### Locate
 
