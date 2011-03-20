@@ -113,6 +113,7 @@ int main(int argc, char** argv) {
 	FM::info("finished processing queries: %.3f sec",((float)(stop-start))/1000000);
 	
 	/* clean up */
+	for(i=0;i<nqrys;i++) free(queries[i]);
 	free(queries);
 	delete FMIdx;
 	/* T already deleted in FMIdx */
