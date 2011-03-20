@@ -22,7 +22,7 @@
 
 int FM::verbose = 0;
 
-FM::FM(uint8_t* T,uint32_t N,uint32_t samplerate) {
+FM::FM(uint8_t* T,uint32_t N,uint32_t samplerate = DEFAULT_SAMPLERATE) {
     this->samplerate = samplerate;
     this->n = N;
     
