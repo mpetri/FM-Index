@@ -360,15 +360,15 @@ the index achieves different time and space trade-offs during the `locate()` ope
 
 ![FM-Index locate() - 50MB - Query length 6 - 50000 occurrences - variable samplerate](https://github.com/mpetri/FM-Index/raw/master/benchmark/FM_locate_samplerate_50MB_QL6.png)
 
+The graph above shows the time required to retrieve the locations of 50000 occurrences compared to the size of the FM-Index for different suffix samplerates.
 Smaller samplerate decrease the `locate()` running time but the space used by the index increases. For `s=8` the index is 1.5 times the sizes of the original text. 
-For `s-512`, that is only every 512th position in the underlying suffix array is sampled, the index is less than 50% of the original text. The above graph shows that the
+For `s=512`, that is only every 512th position in the underlying suffix array is sampled, the index is less than 50% of the original text. The above graph shows that the
 best time-space trade-off is achieved for samplerates between 64 and 128.
 
 ### Extract
 
-
-### Recover
-
+Extracting snippets of `T` from the index shows the same properties as the `locate()` operation. Like `locate()`, the running time of `extract()` grows linearly with the size of the
+size of the snippet. The running time is also influenced by the samplerate `s` which provides the same time and space trade-offs described above. 
 
 Libraries
 ---------
