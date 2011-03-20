@@ -166,7 +166,7 @@ Test data was taken from the [The Pizza&Chili Site](http://pizzachili.di.unipi.i
 	<td>src</td><td align=left>Concatenated source code (.c,.h,.C,.java) of linux-2.6.11.6 and gcc-4.0.0</td><td>230</td><td>5.47</td>
   </tr>
   <tr>
-	<td>proteins</td><td align=left>Sequence of newline-separated protein sequences</td><td>25</td><td>79.15</td>
+	<td>proteins</td><td align=left>Sequence of newline-separated protein sequences</td><td>25</td><td>4.20</td>
   </tr>
   <tr>
 	<td>dna</td><td align=left>Gene DNA sequences</td><td>4</td><td>1.97</td>
@@ -251,20 +251,50 @@ Construction time increases linearly `O(n)` with size `n` of `T`. Memory require
   </tr>
   <tr>
     <td>wsj</td><td>25</td><td>15</td>td>0.6</td>
+  </tr>
+  <tr>
 	<td>wsj</td><td>50</td><td>29</td>td>0.58</td>
+  </tr>
+  <tr>
 	<td>wsj</td><td>100</td><td>57</td>td>0.57</td>
+  </tr>
+  <tr>
 	<td>wsj</td><td>200</td><td>112</td>td>0.56</td>
+  </tr>
+  <tr>
 	<td>src</td><td>50</td><td>30</td>td>0.77</td>
+  </tr>
+  <tr>
 	<td>src</td><td>100</td><td>59</td>td>0.77</td>
+  </tr>
+  <tr>
 	<td>src</td><td>200</td><td>117</td>td>0.75</td>
+  </tr>
+  <tr>
 	<td>proteins</td><td>50</td><td>36</td>td>0.72</td>
+  </tr>
+  <tr>
 	<td>proteins</td><td>100</td><td>71</td>td>0.71</td>
+  </tr>
+  <tr>
 	<td>proteins</td><td>200</td><td>137</td>td>0.685</td>
+  </tr>
+  <tr>
 	<td>dna</td><td>50</td><td>24</td>td>0.48</td>
+  </tr>
+  <tr>
 	<td>dna</td><td>100</td><td>48</td>td>0.48</td>
-	<td>dna</td><td>200</td><td>95</td>td>0.475</td>	
+  </tr>
+  <tr>
+	<td>dna</td><td>200</td><td>95</td>td>0.475</td>
+  </tr>
+  <tr>
 	<td>xml</td><td>50</td><td>25</td>td>0.50</td>
+  </tr>
+  <tr>
 	<td>xml</td><td>100</td><td>50</td>td>0.50</td>
+  </tr>
+  <tr>
 	<td>xml</td><td>200</td><td>99</td>td>0.495</td>	
   </tr>  
 </table>
@@ -313,4 +343,4 @@ References
 Author
 ------
 
-Matthias Petri <Matthias.Petri@gmail.com>
+Matthias Petri <Matthias.Petri@gmail.com> see (http://github/com/mpetri/FM-Index).
