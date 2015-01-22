@@ -105,7 +105,7 @@ FM::remap0(uint8_t* T,uint32_t n) {
     X = (uint8_t*) malloc(n * sizeof(uint8_t));
     for(i=0;i<n-1;i++) // the last character must be zero
       X[i]=remap[T[i]];
-    
+    X[n-1] = 0;    
     return X;
 }
 
